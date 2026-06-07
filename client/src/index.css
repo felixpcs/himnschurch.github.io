@@ -1,0 +1,326 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap');
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-border: oklch(0.25 0.02 260);
+  --color-background: oklch(0.04 0.01 260);
+  --color-foreground: oklch(0.95 0.01 260);
+  --color-card: oklch(0.12 0.025 260);
+  --color-card-foreground: oklch(0.95 0.01 260);
+  --color-popover: oklch(0.10 0.02 260);
+  --color-popover-foreground: oklch(0.95 0.01 260);
+  --color-primary: oklch(0.65 0.35 340);
+  --color-primary-foreground: oklch(0.04 0.01 260);
+  --color-secondary: oklch(0.10 0.02 260);
+  --color-secondary-foreground: oklch(0.95 0.01 260);
+  --color-muted: oklch(0.07 0.015 260);
+  --color-muted-foreground: oklch(0.65 0.02 260);
+  --color-accent: oklch(0.80 0.20 195);
+  --color-accent-foreground: oklch(0.04 0.01 260);
+  --color-destructive: oklch(0.55 0.25 25);
+  --color-destructive-foreground: oklch(0.95 0.01 260);
+  --color-input: oklch(0.10 0.02 260);
+  --color-ring: oklch(0.65 0.35 340);
+  --radius: 0.25rem;
+}
+
+/* ─── Cyberpunk Color Tokens ─────────────────────────────────────────────── */
+:root {
+  --neon-pink: oklch(0.65 0.35 340);
+  --neon-cyan: oklch(0.80 0.20 195);
+  --neon-pink-dim: oklch(0.45 0.25 340);
+  --neon-cyan-dim: oklch(0.55 0.15 195);
+  --bg-void: oklch(0.04 0.01 260);
+  --bg-deep: oklch(0.07 0.015 260);
+  --bg-panel: oklch(0.10 0.02 260);
+  --bg-card: oklch(0.12 0.025 260);
+  --bg-hover: oklch(0.16 0.03 260);
+  --border-neon: oklch(0.65 0.35 340 / 0.4);
+  --border-cyan: oklch(0.80 0.20 195 / 0.4);
+  --border-dim: oklch(0.25 0.02 260);
+  --text-primary: oklch(0.95 0.01 260);
+  --text-secondary: oklch(0.65 0.02 260);
+  --text-muted: oklch(0.40 0.02 260);
+
+  /* shadcn/ui tokens mapped to cyberpunk */
+  --background: var(--bg-void);
+  --foreground: var(--text-primary);
+  --card: var(--bg-card);
+  --card-foreground: var(--text-primary);
+  --popover: var(--bg-panel);
+  --popover-foreground: var(--text-primary);
+  --primary: var(--neon-pink);
+  --primary-foreground: oklch(0.04 0.01 260);
+  --secondary: var(--bg-panel);
+  --secondary-foreground: var(--text-primary);
+  --muted: var(--bg-deep);
+  --muted-foreground: var(--text-secondary);
+  --accent: var(--neon-cyan);
+  --accent-foreground: oklch(0.04 0.01 260);
+  --destructive: oklch(0.55 0.25 25);
+  --destructive-foreground: oklch(0.95 0.01 260);
+  --border: var(--border-dim);
+  --input: var(--bg-panel);
+  --ring: var(--neon-pink);
+  --radius: 0.25rem;
+
+  --sidebar-background: var(--bg-deep);
+  --sidebar-foreground: var(--text-primary);
+  --sidebar-primary: var(--neon-pink);
+  --sidebar-primary-foreground: oklch(0.04 0.01 260);
+  --sidebar-accent: var(--bg-hover);
+  --sidebar-accent-foreground: var(--text-primary);
+  --sidebar-border: var(--border-dim);
+  --sidebar-ring: var(--neon-pink);
+}
+
+/* ─── Base Styles ────────────────────────────────────────────────────────── */
+@layer base {
+  * {
+    border-color: oklch(0.25 0.02 260);
+    box-sizing: border-box;
+  }
+
+  html {
+    background-color: var(--bg-void);
+    color-scheme: dark;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Rajdhani', 'Share Tech Mono', sans-serif;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 4px; height: 4px; }
+  ::-webkit-scrollbar-track { background: var(--bg-void); }
+  ::-webkit-scrollbar-thumb { background: var(--neon-pink-dim); border-radius: 2px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--neon-pink); }
+
+  .container {
+    @apply mx-auto px-4;
+    max-width: 1400px;
+  }
+
+  .flex { min-width: 0; min-height: 0; }
+}
+
+/* ─── Neon Effects ───────────────────────────────────────────────────────── */
+@layer utilities {
+  .neon-text-pink {
+    color: oklch(0.85 0.35 340);
+    text-shadow:
+      0 0 7px oklch(0.85 0.35 340 / 0.9),
+      0 0 15px oklch(0.75 0.35 340 / 0.7),
+      0 0 30px oklch(0.65 0.35 340 / 0.5),
+      0 0 60px oklch(0.55 0.35 340 / 0.3);
+  }
+
+  .neon-text-cyan {
+    color: oklch(0.90 0.20 195);
+    text-shadow:
+      0 0 7px oklch(0.90 0.20 195 / 0.9),
+      0 0 15px oklch(0.80 0.20 195 / 0.7),
+      0 0 30px oklch(0.70 0.20 195 / 0.5),
+      0 0 60px oklch(0.60 0.20 195 / 0.3);
+  }
+
+  .neon-border-pink {
+    border-color: oklch(0.65 0.35 340 / 0.6);
+    box-shadow:
+      0 0 5px oklch(0.65 0.35 340 / 0.3),
+      inset 0 0 5px oklch(0.65 0.35 340 / 0.1);
+  }
+
+  .neon-border-cyan {
+    border-color: oklch(0.80 0.20 195 / 0.6);
+    box-shadow:
+      0 0 5px oklch(0.80 0.20 195 / 0.3),
+      inset 0 0 5px oklch(0.80 0.20 195 / 0.1);
+  }
+
+  .neon-glow-pink {
+    box-shadow:
+      0 0 10px oklch(0.65 0.35 340 / 0.4),
+      0 0 20px oklch(0.65 0.35 340 / 0.2),
+      0 0 40px oklch(0.65 0.35 340 / 0.1);
+  }
+
+  .neon-glow-cyan {
+    box-shadow:
+      0 0 10px oklch(0.80 0.20 195 / 0.4),
+      0 0 20px oklch(0.80 0.20 195 / 0.2),
+      0 0 40px oklch(0.80 0.20 195 / 0.1);
+  }
+
+  /* HUD bracket corners */
+  .hud-corners {
+    position: relative;
+  }
+  .hud-corners::before,
+  .hud-corners::after {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    pointer-events: none;
+  }
+  .hud-corners::before {
+    top: 0; left: 0;
+    border-top: 2px solid oklch(0.65 0.35 340 / 0.8);
+    border-left: 2px solid oklch(0.65 0.35 340 / 0.8);
+  }
+  .hud-corners::after {
+    bottom: 0; right: 0;
+    border-bottom: 2px solid oklch(0.65 0.35 340 / 0.8);
+    border-right: 2px solid oklch(0.65 0.35 340 / 0.8);
+  }
+
+  .hud-corners-cyan::before {
+    border-color: oklch(0.80 0.20 195 / 0.8);
+  }
+  .hud-corners-cyan::after {
+    border-color: oklch(0.80 0.20 195 / 0.8);
+  }
+
+  /* Scan line effect */
+  .scanlines {
+    background-image: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      oklch(0 0 0 / 0.03) 2px,
+      oklch(0 0 0 / 0.03) 4px
+    );
+    pointer-events: none;
+  }
+
+  /* Cyberpunk button */
+  .btn-cyber {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: all 160ms cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  .btn-cyber:active {
+    transform: scale(0.97);
+  }
+
+  /* Grid lines background */
+  .cyber-grid {
+    background-image:
+      linear-gradient(oklch(0.65 0.35 340 / 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, oklch(0.65 0.35 340 / 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  /* Gradient themes for projection */
+  .proj-theme-dark {
+    background: #000000;
+  }
+  .proj-theme-gradient {
+    background: radial-gradient(ellipse at center, oklch(0.10 0.04 260) 0%, oklch(0.04 0.01 260) 70%);
+  }
+  .proj-theme-minimal {
+    background: oklch(0.06 0.01 260);
+  }
+
+  /* Font sizes for projection */
+  .proj-font-sm { font-size: clamp(1.5rem, 3vw, 2.5rem); }
+  .proj-font-md { font-size: clamp(2rem, 4vw, 3.5rem); }
+  .proj-font-lg { font-size: clamp(2.5rem, 5vw, 5rem); }
+  .proj-font-xl { font-size: clamp(3rem, 7vw, 7rem); }
+}
+
+/* ─── Component Overrides ────────────────────────────────────────────────── */
+@layer components {
+  /* Input cyberpunk */
+  input, textarea, select {
+    font-family: 'Rajdhani', sans-serif !important;
+    font-weight: 500;
+  }
+
+  /* Button base */
+  button {
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+  }
+
+  /* Active nav item */
+  .nav-item-active {
+    color: oklch(0.85 0.35 340);
+    background: oklch(0.65 0.35 340 / 0.1);
+    border-left: 2px solid oklch(0.65 0.35 340);
+  }
+
+  /* Slide card */
+  .slide-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-dim);
+    transition: all 200ms cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  .slide-card:hover {
+    border-color: oklch(0.65 0.35 340 / 0.5);
+    background: var(--bg-hover);
+  }
+  .slide-card.active {
+    border-color: oklch(0.65 0.35 340);
+    background: oklch(0.65 0.35 340 / 0.1);
+    box-shadow: 0 0 10px oklch(0.65 0.35 340 / 0.3);
+  }
+}
+
+/* ─── Animations ─────────────────────────────────────────────────────────── */
+@keyframes neon-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+@keyframes flicker {
+  0%, 95%, 100% { opacity: 1; }
+  96% { opacity: 0.8; }
+  97% { opacity: 1; }
+  98% { opacity: 0.7; }
+}
+
+@keyframes scan {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+
+@keyframes slide-in-right {
+  from { transform: translateX(20px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slide-in-up {
+  from { transform: translateY(10px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.animate-neon-pulse { animation: neon-pulse 2s ease-in-out infinite; }
+.animate-flicker { animation: flicker 8s ease-in-out infinite; }
+.animate-slide-in-right { animation: slide-in-right 200ms cubic-bezier(0.23, 1, 0.32, 1) forwards; }
+.animate-slide-in-up { animation: slide-in-up 200ms cubic-bezier(0.23, 1, 0.32, 1) forwards; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .animate-neon-pulse { animation: neon-pulse 2s ease-in-out infinite; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .animate-neon-pulse, .animate-flicker { animation: none; }
+}
